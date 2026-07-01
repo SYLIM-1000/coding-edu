@@ -1,0 +1,236 @@
+body {
+    margin: 30px 30px;
+}
+
+#mainimage {
+    position: absolute;
+    bottom: 1%;
+    left: 34%;
+    width: 7vw;
+    max-width: 60px;
+    min-width: 35px;
+}
+
+/* 제목 처리 */
+h1 {
+    position: relative;
+    text-align: center;
+    color: white;
+    text-align: center;
+    border: 2px solid black;
+    /* padding: 12px; */
+    padding: 1rem;
+    /* background-color: rgb(183, 255, 234); */
+    border-radius: 6px;
+    background-image: URL("./images/sky.avif");
+    background-size: cover;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header > p {
+    margin: -17px 1px;
+}
+
+/* 에러메시지 스타일 */
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    margin-top: 5px;
+}
+
+/* H3 항목 볼드처리 */
+h3 {
+    border: 2px green dotted;
+    color: red;
+    border-radius: 6px;
+}
+
+h3::before {
+    content:"✅ ";
+}
+
+/* maintable class 관련 */
+.maintable {
+    padding: 0px 40px 12px 0px ;
+    /* margin: 10px 10px ; */
+    border-radius: 6px;
+    border: none;
+    margin: -30px 0px -15px 0px;
+}
+
+.maintable th {
+    color: blue;
+    padding: 1px 10px ;
+    text-align: left;
+    border-radius: 6px;
+}
+
+.maintable td {
+    /* padding: 5px 5px ; */
+    color:chocolate;
+    font-size: 14px;
+    border-radius: 6px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+/* .maintable tr > td {
+    color: aqua;
+} */
+
+/* 플레이스홀더 항목만 별도 마진 적용 */
+/* :placeholder-shown {
+    margin: 5px 0px 5px 5px;
+} */
+
+/* ID 항목만 따로 디자인 적용 */
+#pwcolor {
+    color: red;
+}
+
+/* 자식 선택자 활용 */
+nav > p {
+    display: flex;
+    flex-direction: column;
+    /* gap: 8px; */
+    margin-top: 25px;
+    align-items: center;
+    padding-bottom: 5px; sticky 아래 여백
+}
+
+@media (min-width: 768px) {
+    nav > p {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+nav > p > a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    /* margin-top: 20px; */
+    margin: 2px;
+    border: 2px solid black;
+    padding: 5px 5px;
+    border-radius: 6px;
+}
+
+
+/* 자식선택자러 필드셋 박스 조정 */
+main > fieldset {
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 2px solid #dddddd;
+    border-radius: 6px;
+    width: 95%;
+    max-width: none; 
+}
+
+/* 가상클래스 - 마우스오버 호버 적용 */
+a:hover {
+    color:chartreuse ;
+    background-color: black;
+}
+
+/* 가입제출 버튼 호버링 */
+button:hover {
+    background-color: darkgrey;
+    color: blanchedalmond;
+}
+
+/* 가상클래스 - 입력창 선택 시 스타일 */
+#intro:hover {
+    background-color: darkorange;
+    box-shadow: 0 0 5px;
+    cursor: text;
+}
+
+/* 특정 타입의 인풋만 선택하여 수정하기 */
+input[type="checkbox"] + label {
+    /* width: 10px;
+    height: 10px; */
+    transform: scale(1.1);
+    margin-right: 10px;
+    cursor: grabbing;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+#signup-form {
+    display: flex;
+    background-color: white;
+    /* padding: 32px; */
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #dddddd;
+    border-radius: 12px;
+}
+
+/* 바텀 버튼 그룹 flex, 위치 */
+.bottom-group {
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* 푸터 우측정렬 */
+footer {
+    text-align: right;
+}
+
+/* 스티키 처리 */
+#sticky-top {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+/* 계정 정보 768 이상에서만 2줄로 */
+#account-info {
+    padding-top: 5px;
+}
+
+/* 768px 이상에서만 2줄 배치 */
+@media (min-width: 768px) {
+    #account-info {
+        display: grid;
+        grid-template-columns: auto 1fr auto 1fr;
+        gap: 8px;
+    }
+
+    #account-info tbody,
+    #account-info tr {
+        display: contents;
+    }
+}
+
+/* 기본정보도 반응형 */
+#basic-info {
+    padding-top: 5px;
+}
+
+/* 768px 이상에서만 2줄 배치 */
+@media (min-width: 768px) {
+    #basic-info {
+        display: grid;
+        grid-template-columns: auto 1fr auto 1fr;
+        gap: 8px;
+    }
+
+    #basic-info tbody,
+    #basic-info tr {
+        display: contents;
+    }
+}

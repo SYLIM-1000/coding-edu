@@ -1,0 +1,398 @@
+[slides]
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional HTML Table Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 기본 설정 */
+        * { box-sizing: border-box; }
+        body {
+            background-color: #0f172a;
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 0;
+            place-items: center;
+        }
+
+        .slide-container {
+            align-items: flex-start;
+            background-color: #0f172a;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            height: 720px;
+            justify-content: flex-start;
+            overflow: hidden;
+            padding: 60px 80px;
+            position: relative;
+            width: 1280px;
+            color: #f8fafc;
+        }
+
+        /* 배경 디자인 요소 (Abstract Shapes) */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            bottom: 40px;
+            left: 80px;
+            right: 80px;
+            height: 1px;
+            background: rgba(248, 250, 252, 0.1);
+            z-index: 0;
+        }
+
+        .slide-container > * { position: relative; z-index: 1; }
+
+        /* 타이포그래피 */
+        h1, h2, h3 {
+            font-family: 'Urbanist', sans-serif;
+            margin: 0;
+            color: #f8fafc;
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            border-left: 6px solid #fbbf24;
+            padding-left: 20px;
+            letter-spacing: -1px;
+        }
+
+        p, li { font-size: 20px; line-height: 1.6; color: #94a3b8; }
+        strong { color: #fbbf24; }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* 레이아웃: Title Slide */
+        .title-layout {
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .title-layout h1 { font-size: 80px; margin-bottom: 20px; color: #fbbf24; }
+        .title-layout p { font-size: 24px; max-width: 800px; }
+
+        /* 레이아웃: Section Title */
+        .section-title-layout {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .section-title-layout h2 { font-size: 64px; margin-bottom: 20px; }
+        .section-title-layout hr { width: 100px; border: 2px solid #fbbf24; margin: 20px 0; }
+
+        /* 레이아웃: Table */
+        .table-layout { width: 100%; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 12px; overflow: hidden; }
+        th, td { padding: 24px; text-align: left; border-bottom: 1px solid #334155; }
+        th { background-color: #fbbf24; color: #0f172a; font-size: 22px; font-weight: 700; }
+        td { color: #f8fafc; font-size: 20px; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: rgba(251, 191, 36, 0.05); }
+
+        /* 레이아웃: Tiled Text with Icons */
+        .tiled-content { display: flex; gap: 30px; width: 100%; }
+        .tile {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            flex: 1;
+            border-top: 4px solid #fbbf24;
+            transition: transform 0.3s ease;
+        }
+        .tile .icon { font-size: 40px; color: #fbbf24; margin-bottom: 20px; }
+        .tile h3 { font-size: 28px; margin-bottom: 15px; color: #f8fafc; }
+
+        /* 레이아웃: Two Column Tiled Text */
+        .two-column.tiled { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; }
+        .two-column.tiled > div { background: #1e293b; padding: 40px; border-radius: 16px; }
+
+        /* 레이아웃: Styled Bullet Points */
+        .bullet-list ul { list-style: none; padding: 0; }
+        .bullet-list li { position: relative; padding-left: 45px; margin-bottom: 25px; }
+        .bullet-list i { position: absolute; left: 0; top: 5px; color: #fbbf24; font-size: 24px; }
+
+        /* 레이아웃: Highlight Numbers */
+        .highlight-numbers-layout { display: flex; align-items: center; width: 100%; gap: 60px; }
+        .highlight-numbers-layout .number { font-size: 160px; font-weight: 700; color: #fbbf24; line-height: 1; }
+        .highlight-numbers-layout .number-label { font-size: 32px; color: #f8fafc; font-weight: 500; }
+
+        /* 레이아웃: Image Right Text Left */
+        .two-column.image-right { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: center; }
+        .image-wrapper { border-radius: 16px; overflow: hidden; height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 차트 스타일 */
+        .chart-container { width: 100%; display: flex; flex-direction: column; gap: 20px; }
+        .bar { display: flex; align-items: center; gap: 20px; }
+        .bar .label { width: 150px; text-align: right; font-weight: 700; color: #fbbf24; }
+        .bar .bar-inner { flex-grow: 1; background: #334155; height: 40px; border-radius: 20px; overflow: hidden; }
+        .bar .bar-fill { height: 100%; background: linear-gradient(90deg, #fbbf24, #d97706); display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; color: #0f172a; font-weight: 700; }
+
+        /* Timeline */
+        .timeline-layout { display: flex; justify-content: space-between; position: relative; width: 100%; margin-top: 100px; }
+        .timeline-line { position: absolute; top: 50%; left: 0; right: 0; height: 4px; background: #334155; z-index: 0; }
+        .timeline-item { width: 22%; text-align: center; position: relative; z-index: 1; }
+        .timeline-item::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; background: #fbbf24; border-radius: 50%; border: 4px solid #0f172a; }
+        .timeline-item .content-wrapper { position: absolute; width: 100%; }
+        .timeline-item:nth-child(odd) .content-wrapper { bottom: 40px; }
+        .timeline-item:nth-child(even) .content-wrapper { top: 40px; }
+
+        /* Q&A */
+        .qa-layout { text-align: center; width: 100%; }
+        .qa-layout h2 { font-size: 80px; color: #fbbf24; margin-bottom: 20px; }
+
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Mastering HTML Tables</h1>
+        <p>데이터의 구조적 시각화를 위한 전문가용 HTML 테이블 가이드</p>
+        <div style="margin-top: 40px; font-weight: 500; color: #fbbf24;">Professional Data Structuring Series</div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <div class="section-title-layout">
+        <hr>
+        <h2>01. Core Syntax</h2>
+        <p>HTML 테이블을 구성하는 4가지 핵심 태그의 이해</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">테이블 구조의 핵심 요소</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-table"></i></div>
+                <h3>&lt;table&gt;</h3>
+                <p>표 전체를 감싸는 가장 바깥쪽 컨테이너입니다. 모든 데이터는 이 안에 위치합니다.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-grip-lines"></i></div>
+                <h3>&lt;tr&gt;</h3>
+                <p><strong>Table Row</strong>의 약자로, 표의 가로 줄(행)을 정의할 때 사용합니다.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-heading"></i></div>
+                <h3>&lt;th&gt; / &lt;td&gt;</h3>
+                <p><strong>th</strong>는 제목 셀(굵게), <strong>td</strong>는 일반 데이터 셀을 의미합니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">3x3 실무 데이터 테이블 예시</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>나이</th>
+                        <th>사는곳</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>홍길동</td>
+                        <td>25</td>
+                        <td>서울시 강남구</td>
+                    </tr>
+                    <tr>
+                        <td>김철수</td>
+                        <td>30</td>
+                        <td>부산시 해운대구</td>
+                    </tr>
+                    <tr>
+                        <td>이영희</td>
+                        <td>28</td>
+                        <td>광주시 북구</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-top: 30px; font-style: italic;">* 위 테이블은 th와 td를 적절히 배합하여 가독성을 극대화한 구조입니다.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <div class="section-title-layout">
+        <hr>
+        <h2>02. Styling & Ethics</h2>
+        <p>더 깔끔하고 전문적인 표를 만드는 디자인 기법</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">전문가급 테이블 스타일링 팁</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>Border Collapse</h3>
+                <p><code>border-collapse: collapse;</code> 속성을 사용하여 셀 사이의 이중 테두리를 하나로 합치면 훨씬 세련된 느낌을 줍니다.</p>
+            </div>
+            <div>
+                <h3>Cell Padding</h3>
+                <p>텍스트와 테두리 사이에 충분한 <strong>Padding</strong>(여백)을 주어 데이터가 숨을 쉴 수 있는 공간을 확보하세요.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">의미론적(Semantic) 태그 활용</h2>
+    <div class="content-area">
+        <div class="bullet-list">
+            <ul>
+                <li><i class="fa-solid fa-check-double"></i> <strong>&lt;thead&gt;</strong>: 제목 행들을 그룹화하여 스크롤 시 고정하거나 별도 스타일링이 가능합니다.</li>
+                <li><i class="fa-solid fa-check-double"></i> <strong>&lt;tbody&gt;</strong>: 본문 데이터 영역을 정의하여 코드의 가독성을 높입니다.</li>
+                <li><i class="fa-solid fa-check-double"></i> <strong>&lt;tfoot&gt;</strong>: 합계나 요약 정보를 표 하단에 표시할 때 사용합니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">테이블 데이터의 시각적 변환 (나이 비교)</h2>
+    <div class="content-area">
+        <div class="chart-container">
+            <div class="bar">
+                <div class="label">김철수 (30)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 100%;">MAX</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">이영희 (28)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 93.3%;">93%</div></div>
+            </div>
+            <div class="bar">
+                <div class="label">홍길동 (25)</div>
+                <div class="bar-inner"><div class="bar-fill" style="width: 83.3%;">83%</div></div>
+            </div>
+        </div>
+        <p style="margin-top: 40px; text-align: center; color: #fbbf24;">표 형식의 데이터를 위와 같이 차트로 시각화하면 비교 분석이 더욱 용이해집니다.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">데이터 무결성 및 가독성</h2>
+    <div class="content-area">
+        <div class="highlight-numbers-layout">
+            <div>
+                <div class="number">100%</div>
+            </div>
+            <div>
+                <div class="number-label">가독성 향상 수치</div>
+                <p>구조화된 테이블은 일반 텍스트 나열보다 정보 전달 속도가 약 2배 이상 빠르며, 복잡한 비즈니스 데이터의 오류를 방지합니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">실무에서의 테이블 활용 사례</h2>
+    <div class="content-area">
+        <div class="two-column image-right">
+            <div>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 20px;"><strong style="font-size: 24px;">1. 재무 및 통계 리포트</strong><br>방대한 수치 데이터를 일목요연하게 정리합니다.</li>
+                    <li style="margin-bottom: 20px;"><strong style="font-size: 24px;">2. 관리자 대시보드</strong><br>사용자 목록, 주문 내역 등을 효율적으로 노출합니다.</li>
+                    <li><strong style="font-size: 24px;">3. 비교 분석 표</strong><br>제품 사양이나 서비스 플랜 간의 차이를 시각화합니다.</li>
+                </ul>
+            </div>
+            <div class="image-wrapper">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/15718248891853194275" alt="Professional Dashboard">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">테이블 설계 및 구현 워크플로우</h2>
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="color: #fbbf24;">데이터 정의</h3>
+                    <p>필요한 컬럼과 행의 개수를 파악합니다.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="color: #fbbf24;">HTML 마크업</h3>
+                    <p>semantic 태그를 사용하여 구조를 잡습니다.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="color: #fbbf24;">CSS 스타일링</h3>
+                    <p>간격과 테두리, 배경색을 지정합니다.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="color: #fbbf24;">최종 검토</h3>
+                    <p>다양한 기기에서의 가독성을 테스트합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide12">
+    <div class="qa-layout">
+        <h2>Questions?</h2>
+        <p>HTML 테이블 설계에 대해 더 궁금한 점이 있으신가요?</p>
+        <div style="margin-top: 60px; font-size: 24px; color: #fbbf24;">
+            <i class="fa-solid fa-envelope"></i> contact@html-expert.com<br>
+            <i class="fa-solid fa-globe"></i> www.web-standard.com
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

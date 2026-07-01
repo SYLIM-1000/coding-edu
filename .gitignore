@@ -1,0 +1,19 @@
+# 1. 특정 파일 제외
+# secret_key.txt
+
+# 2. 특정 확장자 파일 모두 제외
+# *.log
+# *.tmp
+
+# 3. 특정 폴더 전체 제외
+#node_modules/
+#dist/
+
+# 4. 예외 처리 (config.json은 제외하되, config.default.json은 포함)
+#config*.json
+# config.default.json
+
+# 특정 파일 제외하기
+password.md
+
+

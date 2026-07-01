@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+
+  border: 2px solid black;
+}
+
+.item {
+  border: 1px solid red;
+  padding: 20px;
+}
+
+.container2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-template-rows: repeat(3 , 1fr);
+}
+
+.item2 {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

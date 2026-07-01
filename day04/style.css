@@ -1,0 +1,99 @@
+/* 제목 처리 */
+h1 {
+    color: red;
+}
+
+/* 에러메시지 스타일 */
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: none;
+    margin-top: 5px;
+}
+
+/* H3 항목 볼드처리 */
+h3 {
+    border: 2px green dotted;
+    color: red;
+}
+
+h3::before {
+    content:"✅ ";
+}
+
+/* maintable class 관련 */
+.maintable {
+    padding: 12px 40px ;
+    margin: 10px 10px ;
+}
+
+.maintable th {
+    color: blue;
+    padding: 1px 10px ;
+    text-align: left;
+}
+
+.maintable td {
+    padding: 5px 5px ;
+    color:chocolate
+}
+
+/* .maintable tr > td {
+    color: aqua;
+} */
+
+/* 플레이스홀더 항목만 별도 마진 적용 */
+:placeholder-shown {
+    margin: 5px 5px;
+}
+
+/* ID 항목만 따로 디자인 적용 */
+#pwcolor {
+    color: red;
+}
+
+/* 링크 관련하여 후손 선택자로 적용 */
+nav a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 파란색 글씨 제거 */
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+/* 자식선택자러 필드셋 박스 조정 */
+main > fieldset {
+    border: 2px solid; 
+    color:green;
+    width: 500px;
+}
+
+/* 가상클래스 - 마우스오버 호버 적용 */
+a:hover {
+    color:chartreuse ;
+}
+
+/* 가입제출 버튼 호버링 */
+button:hover {
+    background-color: darkgrey;
+    color: blanchedalmond;
+}
+
+/* 가상클래스 - 입력창 선택 시 스타일 */
+#intro:hover {
+    background-color: darkorange;
+    box-shadow: 0 0 5px;
+    cursor: text;
+}
+
+/* 특정 타입의 인풋만 선택하여 수정하기 */
+input[type="checkbox"] + label {
+    /* width: 10px;
+    height: 10px; */
+    transform: scale(1.1);
+    margin-right: 10px;
+    cursor: grabbing;
+}
+
+
+

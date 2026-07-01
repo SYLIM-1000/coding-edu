@@ -1,0 +1,27 @@
+/* style.css */
+/* 전체 문서의 배경색과 글꼴 지정 */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+/* 제목의 글자색 지정 */
+h1 {
+    color: #3498db;
+}
+
+/* 문단의 글자 크기 지정 */
+p {
+    font-size: 18px;
+}
+
+#challenge-task {
+    font-weight: bold;
+}
+
+.task {
+    margin: 18px;
+}
+
+a {
+    text-decoration: none;
+}

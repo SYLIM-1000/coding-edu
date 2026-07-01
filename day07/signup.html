@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!-- [codex 수정] 한국어 페이지라서 lang 값을 ko로 수정함 -->
+<!-- 기존 en로 되어있었음. 꼭 수정해야 하는 사항은 아니나 수정했다고. -->
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>회원가입</title>
+    </head>
+    <body>
+        <div id="sticky-top">
+            <header>
+                <h1>
+                    회원가입
+                    <img src="./images/sinzzang.png" alt="신짱" id="mainimage">
+                </h1>
+                <p>회원가입을 위해 정보를 입력해 주세요</p>
+            </header>
+            <nav>
+                <p>
+                    <a href="#">기본 정보</a>
+                    <a href="#">계정 정보</a>
+                    <a href="#">관심 정보</a>
+                </p>
+            </nav>
+        </div>
+        <!-- [codex 수정] main 안에 section과 form을 넣어 HTML 구조가 깨지지 않도록 수정함 -->
+        <!-- 단순 실수였는데 신경써야 할 부분 -->
+        <main>
+            <section class="form-section">
+                <h2>회원가입 정보 입력</h2>
+
+                <form id="signup-form" action="./submit-form.txt" method="post">
+                <fieldset>
+                    <!-- [codex 수정] legend 안의 h3를 제거해 제목 단계가 h1 다음 h2로 자연스럽게 이어지도록 수정함 -->
+                    <!-- 테스트로 작성했던 h3 코드가 제거된 것으로 보임 -->
+                    <legend>기본 정보</legend>
+                    <table class="maintable" id="basic-info">
+                        <tr>
+                            <th><label for="name">이름:</label></th>
+                            <td><input type="text" id="name" name="name" placeholder="김아무개" required></td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="phone1">전화번호:</label>
+                            </th>
+                            <td>
+                                <!-- [codex 수정] 전화번호 입력칸마다 label을 연결하고 inline style을 CSS class로 이동함 -->
+                                <!-- 각 항목별 라벨 연동, 클라스 및 타입 적용 확인 -->
+                                <input type="tel" id="phone1" name="phone1" value="010" class="phone-input" inputmode="numeric" maxlength="3"> -
+                                <label for="phone2" class="sr-only">전화번호 가운데 자리</label>
+                                <input type="tel" id="phone2" name="phone2" pattern="[0-9]*" class="phone-input" inputmode="numeric" maxlength="4"> -
+                                <label for="phone3" class="sr-only">전화번호 마지막 자리</label>
+                                <input type="tel" id="phone3" name="phone3" pattern="[0-9]*" class="phone-input" inputmode="numeric" maxlength="4">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th>
+                                <label for="yearset">생년월일:</label>
+                            </th>
+                            <td>
+                                <!-- [codex 수정] HTML/CSS 과제 범위에 맞추기 위해 script 대신 select option을 직접 작성함 -->
+                                <!-- 힘들게 포문 작성했던걸 얘가 select option으로 돌려버림 -->
+                                <select id="yearset" name="birth-year">
+                                    <option value="">년도</option>
+                                    <option value="2026">2026년</option>
+                                    <option value="2025">2025년</option>
+                                    <option value="2024">2024년</option>
+                                    <option value="2023">2023년</option>
+                                    <option value="2022">2022년</option>
+                                    <option value="2021">2021년</option>
+                                    <option value="2020">2020년</option>
+                                    <option value="2000">2000년</option>
+                                    <option value="1990">1990년</option>
+                                </select>
+                            
+                                <label for="monthset" class="sr-only">생년월일 월</label>
+                                <select id="monthset" name="birth-month">
+                                    <option value="">월</option>
+                                    <option value="1">1월</option>
+                                    <option value="2">2월</option>
+                                    <option value="3">3월</option>
+                                    <option value="4">4월</option>
+                                    <option value="5">5월</option>
+                                    <option value="6">6월</option>
+                                    <option value="7">7월</option>
+                                    <option value="8">8월</option>
+                                    <option value="9">9월</option>
+                                    <option value="10">10월</option>
+                                    <option value="11">11월</option>
+                                    <option value="12">12월</option>
+                                </select>
+
+                                <label for="dayset" class="sr-only">생년월일 일</label>
+                                <select id="dayset" name="birth-day">
+                                    <option value="">일</option>
+                                    <option value="1">1일</option>
+                                    <option value="5">5일</option>
+                                    <option value="10">10일</option>
+                                    <option value="15">15일</option>
+                                    <option value="20">20일</option>
+                                    <option value="25">25일</option>
+                                    <option value="31">31일</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- <tr>
+                            <th><label for="birthDate">생년월일2:</label></th>
+                            <td><input type="date" id="birthDate" name="birthDate"></td>
+                        </tr> -->
+                        
+                        <tr>
+                            <th>성별:</th>
+                            <td>
+                                <input type="radio" id="gender_m" name="gender" value="male">
+                                <label for="gender_m">남성</label>
+                                <input type="radio" id="gender_f" name="gender" value="female">
+                                <label for="gender_f">여성</label>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th><label for="address">거주지역: </label></th>
+                            <td>
+                                <select id="address" name="address">
+                                    <option value="seoul">서울</option>
+                                    <option value="daegu">대구</option>
+                                    <option value="busan">부산</option>
+                                    <option value="inchon">인천</option>
+                                    <option value="kwangju">광주</option>
+                                    <option value="daejon">대전</option>
+                                    <option value="ulsan">울산</option>
+                                    <option value="sejong">세종</option>
+                                    <option value="kyungki">경기</option>
+                                    <option value="kangwon">강원</option>
+                                    <option value="chungbook">충북</option>
+                                    <option value="choungnam">충남</option>
+                                    <option value="jeonbook">전북</option>
+                                    <option value="jeonnam">전남</option>
+                                    <option value="kyungsang">경상</option>
+                                    <option value="kyungbook">경북</option>
+                                    <option value="jeju">제주</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <!-- [codex 수정] legend를 제목 태그 대신 fieldset 제목으로만 사용함 -->
+                    <!-- legend가 이미 제목 역할을 하기에 h3 태그 제거 -->
+                    <legend>계정 정보</legend>
+                    <table class="maintable" id="account-info">
+                        <tr>
+                            <th><label for="email">이메일: </label></th>
+                            <td><input type="email" id="email" name="email" placeholder="abc123@gmail.com" required></td>
+                        </tr>
+                        <tr>
+                            <th><label for="userId">아이디:</label></th>
+                            <td><input type="text" id="userId" name="userId" placeholder="아이디" required></td>
+                        </tr>
+                        <tr>
+                            <th><label id="pwcolor" for="userPw">비밀번호:</label></th>
+                            <td>
+                                <!-- [codex 수정] HTML/CSS 과제 범위에 맞추기 위해 JavaScript oninput을 제거하고 HTML 기본 검증만 남김 -->
+                                <!-- 과제에 맞게 과한부분 없애버림.. 자바스크립트로 짠 IF문 사라짐 -->
+                                <input type="password" id="userPw" name="userPw" minlength="8" maxlength="20" placeholder="비밀번호" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="userPw2">비밀번호 확인:</label></th>
+                            <td>
+                                <input type="password" id="userPw2" name="userPw2" minlength="8" maxlength="20" placeholder="비밀번호 재입력" required>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <fieldset>
+                    <!-- [codex 수정] legend를 제목 태그 대신 fieldset 제목으로만 사용함 -->
+                    <!-- 마찬가지. legend가 제목역할 하기에 h3 제거 -->
+                    <legend>관심 분야</legend>
+                    <table class="maintable">
+                        <tr>
+                            <th><label for="hobby1">관심 분야:</label></th>
+                            <td>
+                                <input type="checkbox" id="hobby1" name="hobby" value="marekting">
+                                <label for="hobby1">마케팅</label>
+                                <input type="checkbox" id="hobby2" name="hobby" value="science">
+                                <label for="hobby2">과학</label>
+                                <input type="checkbox" id="hobby3" name="hobby" value="sports">
+                                <label for="hobby3">스포츠</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="intro">자기소개:</label></th>
+                            <td><textarea id="intro" name="intro" rows="5" cols="30" placeholder="내용을 입력하세요"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th>약관 동의:</th>
+                            <td>
+                                <!-- [codex 수정] 필수 동의 checkbox에 required를 추가함 -->
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">이용약관에 동의합니다.</label>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <!-- [codex 수정] 간격 조절용 br 대신 CSS margin으로 버튼 간격을 관리하도록 수정함 -->
+                <!-- br로 간격조절하지 말고 마진으로 할 것 -->
+                <div class="bottom-group">
+                    <button type="submit">가입하기</button>
+                    <button type="reset">초기화</button>
+                </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2026 임승용. all rights reserved.</p>
+        </footer>
+    </body>
+</html>
