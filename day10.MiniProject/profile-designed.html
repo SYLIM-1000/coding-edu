@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>임승용 | Editorial Profile</title>
+    <style>
+      :root {
+        --color-paper-white: #ffffff;
+        --color-ink-black: #000000;
+        --color-carbon: #181818;
+        --color-ash: #6d6d6d;
+        --color-smoke: #9a9a9a;
+        --color-graphite: #636363;
+
+        --font-roobert: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-system-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+        --page-max-width: 1440px;
+        --gutter: 40px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--color-paper-white);
+        color: var(--color-carbon);
+        font-family: var(--font-roobert);
+        font-size: 18px;
+        line-height: 1.36;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 20;
+        display: flex;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 28px;
+        padding: 28px var(--gutter);
+        color: var(--color-paper-white);
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      .site-nav.is-scrolled {
+        background: var(--color-paper-white);
+        color: var(--color-carbon);
+      }
+
+      .brand {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px 15px;
+        max-width: 620px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        position: relative;
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        overflow: hidden;
+        background: var(--color-ink-black);
+        color: var(--color-paper-white);
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        background: url("images/sky.avif") center / cover;
+        content: "";
+        filter: grayscale(100%) contrast(1.18) brightness(0.38);
+        transform: scale(1.04);
+      }
+
+      .hero::after {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.48);
+        content: "";
+      }
+
+      .hero-title {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        max-width: 1200px;
+        padding: 0 var(--gutter);
+        font-size: 160px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 0.76;
+        text-align: center;
+      }
+
+      .hero-kicker {
+        position: absolute;
+        right: var(--gutter);
+        bottom: 40px;
+        z-index: 1;
+        max-width: 340px;
+        color: var(--color-paper-white);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.36;
+      }
+
+      .scroll-mark {
+        position: absolute;
+        bottom: 28px;
+        left: var(--gutter);
+        z-index: 1;
+        width: 92px;
+        height: 92px;
+      }
+
+      .scroll-mark text {
+        fill: var(--color-paper-white);
+        font-family: var(--font-system-ui);
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+
+      .section {
+        padding: 112px var(--gutter);
+      }
+
+      .section-inner {
+        width: min(100%, var(--page-max-width));
+        margin: 0 auto;
+      }
+
+      .editorial-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 64px;
+        align-items: end;
+      }
+
+      .section-label {
+        margin: 0 0 24px;
+        color: var(--color-ash);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .display-heading {
+        margin: 0;
+        color: var(--color-carbon);
+        font-size: 94px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 1.1;
+      }
+
+      .lead-copy {
+        max-width: 680px;
+        margin: 36px 0 0;
+        color: var(--color-carbon);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.58;
+      }
+
+      .profile-frame {
+        display: grid;
+        min-height: 560px;
+        place-items: end center;
+        overflow: hidden;
+        background: var(--color-ink-black);
+      }
+
+      .profile-frame img {
+        width: min(78%, 430px);
+      }
+
+      .fact-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 64px;
+        background: var(--color-ash);
+      }
+
+      .fact-item {
+        min-height: 180px;
+        padding: 28px;
+        background: var(--color-paper-white);
+      }
+
+      .fact-item strong {
+        display: block;
+        margin-bottom: 20px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .fact-item p {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.25;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        margin-top: 28px;
+        list-style: none;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 2px 10px;
+        border: 1px solid currentColor;
+        border-radius: 75px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .dark-frame {
+        min-height: 100vh;
+        background: var(--color-ink-black);
+        color: var(--color-paper-white);
+      }
+
+      .dark-frame .section-label,
+      .dark-frame .muted,
+      .footer .muted {
+        color: var(--color-smoke);
+      }
+
+      .dark-frame .display-heading {
+        color: var(--color-paper-white);
+      }
+
+      .interest-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 72px;
+        background: var(--color-graphite);
+      }
+
+      .interest-item {
+        min-height: 380px;
+        padding: 32px;
+        background: var(--color-ink-black);
+        border-top: 1px solid var(--color-paper-white);
+      }
+
+      .interest-item span {
+        display: block;
+        margin-bottom: 104px;
+        color: var(--color-smoke);
+        font-size: 12px;
+        line-height: 1.2;
+      }
+
+      .interest-item h3 {
+        margin: 0 0 18px;
+        color: var(--color-paper-white);
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.25;
+      }
+
+      .interest-item p {
+        margin: 0;
+        color: var(--color-paper-white);
+        font-size: 16px;
+        line-height: 1.58;
+      }
+
+      .split-section {
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+        gap: 80px;
+      }
+
+      .number-list {
+        display: grid;
+        gap: 1px;
+        background: var(--color-ash);
+      }
+
+      .number-item {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 28px;
+        padding: 32px 0;
+        background: var(--color-paper-white);
+      }
+
+      .number-item .number {
+        color: var(--color-ash);
+        font-size: 18px;
+        line-height: 1.36;
+      }
+
+      .number-item h3 {
+        margin: 0 0 10px;
+        font-size: 45px;
+        font-weight: 300;
+        line-height: 1.22;
+      }
+
+      .number-item p,
+      .number-item ul {
+        margin: 0;
+        color: var(--color-carbon);
+        font-size: 18px;
+        line-height: 1.58;
+      }
+
+      .number-item ul {
+        padding-left: 20px;
+      }
+
+      .why-copy {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px;
+        margin-top: 80px;
+      }
+
+      .why-copy h3 {
+        margin: 0 0 18px;
+        color: var(--color-paper-white);
+        font-size: 45px;
+        font-weight: 300;
+        line-height: 1.22;
+      }
+
+      .why-copy p {
+        margin: 0;
+        color: var(--color-paper-white);
+        line-height: 1.58;
+      }
+
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 72px;
+      }
+
+      .work-tile {
+        display: grid;
+        min-height: 560px;
+        grid-template-rows: 1fr auto;
+        overflow: hidden;
+        background: var(--color-ink-black);
+        color: var(--color-paper-white);
+      }
+
+      .work-media {
+        display: grid;
+        min-height: 360px;
+        place-items: center;
+        overflow: hidden;
+        background: var(--color-carbon);
+      }
+
+      .work-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .work-media.logo-media img {
+        width: min(58%, 260px);
+        height: auto;
+        object-fit: contain;
+      }
+
+      .work-copy {
+        padding: 28px;
+      }
+
+      .work-copy h3 {
+        margin: 0 0 14px;
+        color: var(--color-paper-white);
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.25;
+      }
+
+      .work-copy ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--color-paper-white);
+        font-size: 16px;
+        line-height: 1.58;
+      }
+
+      .goal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 80px;
+        background: var(--color-graphite);
+      }
+
+      .goal-item {
+        min-height: 420px;
+        padding: 40px;
+        background: var(--color-ink-black);
+        border-top: 1px solid var(--color-paper-white);
+      }
+
+      .goal-item h3 {
+        margin: 0 0 28px;
+        color: var(--color-paper-white);
+        font-size: 54px;
+        font-weight: 300;
+        line-height: 1.21;
+      }
+
+      .goal-item ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--color-paper-white);
+        line-height: 1.58;
+      }
+
+      .footer {
+        padding: 48px var(--gutter);
+        background: var(--color-carbon);
+        color: var(--color-paper-white);
+      }
+
+      .footer-inner {
+        display: flex;
+        width: min(100%, var(--page-max-width));
+        margin: 0 auto;
+        justify-content: space-between;
+        gap: 24px;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-title {
+          font-size: 104px;
+        }
+
+        .display-heading {
+          font-size: 78px;
+          line-height: 1.15;
+        }
+
+        .editorial-grid,
+        .split-section {
+          grid-template-columns: 1fr;
+        }
+
+        .interest-grid,
+        .work-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        :root {
+          --gutter: 20px;
+        }
+
+        body {
+          font-size: 16px;
+        }
+
+        .site-nav {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          padding-top: 18px;
+          padding-bottom: 18px;
+        }
+
+        .brand {
+          flex-shrink: 0;
+        }
+
+        .nav-links {
+          width: 100%;
+          max-width: none;
+          gap: 6px 10px;
+          justify-content: flex-start;
+          font-size: 10px;
+        }
+
+        .hero {
+          min-height: 92vh;
+          align-items: center;
+        }
+
+        .hero-title {
+          font-size: 56px;
+        }
+
+        .hero-kicker {
+          right: auto;
+          bottom: 104px;
+          left: var(--gutter);
+          max-width: 300px;
+          font-size: 16px;
+        }
+
+        .scroll-mark {
+          width: 74px;
+          height: 74px;
+        }
+
+        .section {
+          padding-top: 80px;
+          padding-bottom: 80px;
+        }
+
+        .display-heading {
+          font-size: 54px;
+          line-height: 1.21;
+        }
+
+        .profile-frame {
+          min-height: 420px;
+        }
+
+        .fact-list,
+        .interest-grid,
+        .why-copy,
+        .work-grid,
+        .goal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .fact-item {
+          min-height: 148px;
+        }
+
+        .interest-item,
+        .goal-item {
+          min-height: auto;
+        }
+
+        .interest-item span {
+          margin-bottom: 72px;
+        }
+
+        .number-item {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 28px 0;
+        }
+
+        .number-item h3,
+        .why-copy h3 {
+          font-size: 30px;
+          line-height: 1.25;
+        }
+
+        .work-tile {
+          min-height: auto;
+        }
+
+        .work-media {
+          min-height: 320px;
+        }
+
+        .goal-item h3 {
+          font-size: 39px;
+          line-height: 1.24;
+        }
+
+        .footer-inner {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top">lim seungyong</a>
+      <div class="nav-links">
+        <a href="#intro">Intro</a>
+        <a href="#interest">Interest</a>
+        <a href="#career">Career</a>
+        <a href="#why">Why</a>
+        <a href="#works">Works</a>
+        <a href="#goals">Goals</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 class="hero-title" id="hero-title">Lim<br>Seungyong</h1>
+        <p class="hero-kicker">창업을 하고 싶은 초보 빌더. 7년차 CRM마케터. 서울 거주, 89년생.</p>
+        <svg class="scroll-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <path id="scroll-circle" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+          </defs>
+          <text>
+            <textPath href="#scroll-circle">SCROLL TO EXPLORE · SCROLL TO EXPLORE ·</textPath>
+          </text>
+        </svg>
+      </section>
+
+      <section class="section" id="intro">
+        <div class="section-inner">
+          <div class="editorial-grid">
+            <div>
+              <p class="section-label">Intro</p>
+              <h2 class="display-heading">CRM에서<br>프로덕트로<br>넘어가는 중.</h2>
+              <p class="lead-copy">
+                고객의 유입부터 행동 관찰, 서비스 디벨롭과 리텐션까지 이어지는 흐름을 다뤄왔습니다.
+                이제는 AI를 활용해 직접 서비스를 만들고, 아이디어를 검증하는 초보 빌더로 움직이고 있습니다.
+              </p>
+              <ul class="tag-row">
+                <li class="pill">CRM마케터</li>
+                <li class="pill">정형 DB</li>
+                <li class="pill">데이터 분석</li>
+                <li class="pill">프로덕트 개발</li>
+                <li class="pill">AI</li>
+                <li class="pill">러닝</li>
+                <li class="pill">커피</li>
+              </ul>
+            </div>
+            <figure class="profile-frame" aria-label="프로필 그래픽">
+              <img src="images/ddoongi_transparent_background.png" alt="프로필 그래픽">
+            </figure>
+          </div>
+
+          <div class="fact-list">
+            <article class="fact-item">
+              <strong>Role</strong>
+              <p>7년차 CRM마케터</p>
+            </article>
+            <article class="fact-item">
+              <strong>Focus</strong>
+              <p>유입 → 행동 관찰 → 리텐션</p>
+            </article>
+            <article class="fact-item">
+              <strong>Now</strong>
+              <p>AI로 서비스 만들기</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-frame" id="interest">
+        <div class="section-inner">
+          <p class="section-label">About Me</p>
+          <h2 class="display-heading">관심사는 작게 시작해<br>제품으로 이어집니다.</h2>
+          <div class="interest-grid">
+            <article class="interest-item">
+              <span>01</span>
+              <h3>프로덕트 개발</h3>
+              <p>AI 활용법에 관심이 많고 관련 뉴스를 꾸준히 봅니다. 하네스, 프롬프트, 스킬, 플러그인에도 관심이 있습니다.</p>
+            </article>
+            <article class="interest-item">
+              <span>02</span>
+              <h3>아이디어</h3>
+              <p>AI로 몇 개의 프로덕트를 만들며 상품성 있는 아이디어의 중요성을 더 크게 느끼고 있습니다.</p>
+            </article>
+            <article class="interest-item">
+              <span>03</span>
+              <h3>러닝</h3>
+              <p>달리기를 즐긴 지 약 1년이 되었고, 주 5회 정도 달립니다. 하프마라톤 완주 경험이 있습니다.</p>
+            </article>
+            <article class="interest-item">
+              <span>04</span>
+              <h3>커피</h3>
+              <p>산미 있는 커피를 좋아합니다. 집에서 필터 드립으로 내려 마시며 여러 원두를 맛보는 재미를 즐깁니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="career">
+        <div class="section-inner split-section">
+          <div>
+            <p class="section-label">Career</p>
+            <h2 class="display-heading">분석하고,<br>연결하고,<br>다시 붙잡기.</h2>
+          </div>
+          <div class="number-list">
+            <article class="number-item">
+              <span class="number">01</span>
+              <div>
+                <h3>CRM</h3>
+                <p>고객의 유입부터 행동 관찰, 서비스 디벨롭과 리텐션까지 이어지는 과정을 분석하고 개선합니다.</p>
+              </div>
+            </article>
+            <article class="number-item">
+              <span class="number">02</span>
+              <div>
+                <h3>데이터 분석</h3>
+                <p>SQL, Python, Tableau를 활용해 데이터와 비즈니스를 분석하고 마케팅 액션으로 연결합니다.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-frame" id="why">
+        <div class="section-inner">
+          <p class="section-label">Why This Program</p>
+          <h2 class="display-heading">AI의 언어를 이해하고,<br>내 서비스를 만들기 위해.</h2>
+          <div class="why-copy">
+            <article>
+              <h3>AI의 진보</h3>
+              <p>
+                AI 성능이 좋아지면서 내가 하는 일 전반도 바뀔 수 있다고 느꼈습니다.
+                시대에 뒤처지지 않기 위해 AI 활용법과 AI가 말하는 언어를 배우고 싶었습니다.
+              </p>
+            </article>
+            <article>
+              <h3>개인 사업</h3>
+              <p>
+                AI를 활용하면 혼자서도 못하던 영역을 조금씩 다룰 수 있다고 생각했습니다.
+                그래서 내 서비스를 만들고 검증해 보기 위해 1인 창업가 교육에 참여했습니다.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="works">
+        <div class="section-inner">
+          <p class="section-label">Works In Progress</p>
+          <h2 class="display-heading">작게 만들고,<br>테스트하고,<br>다음으로 갑니다.</h2>
+          <div class="work-grid">
+            <article class="work-tile">
+              <div class="work-media">
+                <img src="images/nemo-appstore-screenshot-1.png" alt="Nemo 앱 화면">
+              </div>
+              <div class="work-copy">
+                <h3>앱 Nemo</h3>
+                <ul>
+                  <li>인생 시간을 한눈에 보여주는 미니앱</li>
+                  <li>iOS 출시, AOS 개발 중</li>
+                </ul>
+              </div>
+            </article>
+            <article class="work-tile">
+              <div class="work-media logo-media">
+                <img src="images/inbox_ios_appstore_icon_square_1024_smooth_lines.png" alt="Inbox 앱 아이콘">
+              </div>
+              <div class="work-copy">
+                <h3>앱 Inbox</h3>
+                <ul>
+                  <li>개인적으로 필요했던 메모 덤프 앱</li>
+                  <li>AI가 메모를 정리하고 요약</li>
+                  <li>iOS 빌드 완료 후 테스트 중</li>
+                </ul>
+              </div>
+            </article>
+            <article class="work-tile">
+              <div class="work-media logo-media">
+                <img src="images/nemo-glyph.svg" alt="기획 프로젝트 심볼">
+              </div>
+              <div class="work-copy">
+                <h3>그 외</h3>
+                <ul>
+                  <li>니즈와 페인포인트를 다루는 서비스 기획</li>
+                  <li>네트워크와 인간다움에 대한 관심</li>
+                  <li>AI 활용법과 AI의 언어 학습</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-frame" id="goals">
+        <div class="section-inner">
+          <p class="section-label">Goals</p>
+          <h2 class="display-heading">직접 고치고,<br>직접 팔 수 있는 사람.</h2>
+          <div class="goal-grid">
+            <article class="goal-item">
+              <h3>개발 / AI 역량</h3>
+              <ul>
+                <li>개발 언어의 구조 전반 이해하기</li>
+                <li>세부 사항은 검색과 AI를 활용해 직접 수정하기</li>
+                <li>원하는 프로덕트를 구현할 수 있는 AI 활용 능력 갖추기</li>
+              </ul>
+            </article>
+            <article class="goal-item">
+              <h3>사업 역량</h3>
+              <ul>
+                <li>수익성 있는 프로젝트 시작하고 첫 수익 내기</li>
+                <li>개발 이후 마케팅과 운영 영역까지 경험하기</li>
+                <li>사업 시작부터 운영 전반에 대한 방법 배우기</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>임승용 (Lim Seungyong)</span>
+        <span class="muted">Day10 Mini Project · Editorial profile page · 2026</span>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.querySelector(".site-nav");
+
+      function updateNav() {
+        nav.classList.toggle("is-scrolled", window.scrollY > 80);
+      }
+
+      updateNav();
+      window.addEventListener("scroll", updateNav, { passive: true });
+    </script>
+  </body>
+</html>
