@@ -1,67 +1,84 @@
-// console.log("시작");
 
-// setTimeout(() => {
-//     console.log("1초 후 실행");
-// },1000);
+// 데이터 불러오기 버튼
+const deployBtn = document.querySelector("#deploy-data")
+// 데이터 출력할 ul 태그
+const userList = document.querySelector("#user-data")
 
-// console.log("끝");
+// 과제 1 버튼 클릭 이벤트 리스너 등록
+// deployBtn.addEventListener("click", () => {
+//     fetch("https://jsonplaceholder.typicode.com/users")
+//     .then((response) => response.json())
+//     .then((users) => {
+//         userList.innerHTML = "";
+//         users.forEach((user) => {
+//             const li = document.createElement("li")
+//             li.textContent = `이름: ${user.name}, 이메일: ${user.email}, 도시: ${user.address.city}`;
+//             userList.appendChild(li);
+//         });
+//     })
+//     .catch((error) => {
+//         console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
+//     });
+// });
 
-// setTimeout(() => {
-//     console.log("3초 후 실행")
-// },3000);
-
-
-// 과제
-// 빵 주문 타임아웃
-console.log("빵 주문 완료!");
-setTimeout(() => {
-    console.log("빵이 완성됐어요");
-},3000);
-
-// 셋 타임아웃 카운트 올리기
-console.log("카운트다운 시작");
-let i = 5;
-const timer = setInterval(() => {
-    console.log(i);
-    i--;
-    if (i === 0) {
-        clearInterval(timer);
-        console.log("게임 스타트!");
-    }
-}, 1000);
-
-// 패스트푸드 주문 시스템
-// 감자튀김 주문 약속 만들기
-function makeFries() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("감자튀김이 완성됐습니다!");
-        }, 2000);
+// 과제 2 회원 수 출력하기
+deployBtn.addEventListener("click", () => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP 에러 발생. 상태코드: ${response.status}`);
+        }
+        return response.json();
     })
-}
-
-// 햄버거 약속
-function makeburger() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("햄버거 완성이요") 
-        }, 2000);
+    .then((users) => {
+        userList.innerHTML = "";
+        const li = document.createElement("li");
+        li.textContent = `총 회원수는 ${users.length}명 입니다`;
+        userList.appendChild(li);
     })
-}
+    .catch((error) => {
+        console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
+    })
+});
 
-// 주문 순서대로 처리하는 async 함수 만들기 
-async function startOrder() {
-    console.log("세트 주문이 완료됐습니다.");
 
-    //첫 번째 작업 완료 
-    const friesResault = await makeFries();
-    console.log(friesResault);
 
-    //두 번째 작업 완료 
-    const burgerResult = await makeburger();
-    console.log(burgerResult);
+//사용자의 이름과 번호 출력하기
+fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((users) => {
+        // 여기에 작성
+        users.forEach((users, index) => {
+            console.log(`${index + 1}. 이름: ${users.name}, 전화번호: ${users.phone}`);
+        })
+    });
 
-    console.log("주문하신 세트 완성되었습니다!");
-}
 
-startOrder();
+// 우선 API에서 오는 데이터들 전체 확인해 보기
+fetch("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.json())
+    .then((data) => {
+        console.table(data);
+    });
+
+
+//html id가 user-list인 곳에 이름과 번호를 추가하기
+// html에서 id가 user-list인 요소를 찾아서 list라는 상수로 저장
+const list = document.querySelector("#user-list");
+
+// 무료 모의 API 서버에 저장된 데이터 전체를 list로 가져오기
+fetch("https://jsonplaceholder.typicode.com/users")
+    // 위 요청에 대한 response가 오면, 그 객체를 JSON 형태로 변환하겠다.
+    .then((response) => response.json())
+    // 데이터가 변환되면 변환된 배열을 users 라는 매개변수로 받아 함수 본문{}을 실행한다.
+    .then((users) => {
+        // 배열인 users 의 각 요소별 user에 대한 반복문 루푸를 실행한다.
+        users.forEach((user) => {
+            // 메모리상에 새로운 HTML 리시트 아이템 태그(LI)를 동적으로 생성. 리스트 준비함.
+            const li = document.createElement("li");
+            // li로 생성한 내용을 텍스트 형태로 = 이후의 형태로 저장
+            li.textContent = `이름: ${user.name}, 전화번호: ${user.phone}`;
+            // 준비된 li를 list에 추가함(화면에 추가됨).
+            list.appendChild(li);
+        });
+    });
