@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 계산기 | JavaScript Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 계산기 본체 -->
+        <main class="calculator-card">
+            <header class="calculator-header">
+                <div class="window-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <h1 class="app-title">Smart Calculator</h1>
+            </header>
+
+            <!-- 디스플레이 영역 -->
+            <section class="display-section">
+                <div id="sub-display" class="sub-display"></div>
+                <div id="main-display" class="main-display">0</div>
+            </section>
+
+            <!-- 버튼 패널 -->
+            <section class="keypad">
+                <button type="button" class="btn btn-func" id="btn-clear">AC</button>
+                <button type="button" class="btn btn-func" id="btn-delete">DEL</button>
+                <button type="button" class="btn btn-op" data-op="/">÷</button>
+                <button type="button" class="btn btn-op" data-op="*">×</button>
+
+                <button type="button" class="btn btn-num" data-num="7">7</button>
+                <button type="button" class="btn btn-num" data-num="8">8</button>
+                <button type="button" class="btn btn-num" data-num="9">9</button>
+                <button type="button" class="btn btn-op" data-op="-">-</button>
+
+                <button type="button" class="btn btn-num" data-num="4">4</button>
+                <button type="button" class="btn btn-num" data-num="5">5</button>
+                <button type="button" class="btn btn-num" data-num="6">6</button>
+                <button type="button" class="btn btn-op" data-op="+">+</button>
+
+                <button type="button" class="btn btn-num" data-num="1">1</button>
+                <button type="button" class="btn btn-num" data-num="2">2</button>
+                <button type="button" class="btn btn-num" data-num="3">3</button>
+                <button type="button" class="btn btn-equals" id="btn-equals">=</button>
+
+                <button type="button" class="btn btn-num btn-zero" data-num="0">0</button>
+                <button type="button" class="btn btn-num" data-num=".">.</button>
+            </section>
+        </main>
+
+        <!-- 계산 기록 영역 -->
+        <aside class="history-card">
+            <div class="history-header">
+                <h2>계산 기록</h2>
+                <button type="button" class="btn-clear-history" id="clear-history">기록 삭제</button>
+            </div>
+            <ul id="history-list" class="history-list">
+                <!-- JavaScript에서 기록 항목이 동적으로 생성됩니다. -->
+            </ul>
+        </aside>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
